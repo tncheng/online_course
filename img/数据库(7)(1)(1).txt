@@ -1,0 +1,48 @@
+用户：我的课程
+	所选课程：图片地址，课程名称，课程servletURL，课程ID
+	我的评论，内容，时间，小节名
+	
+点击目录：所有分类名，分类请求的servlet地址
+点击分类：图片地址，课程名称，课程课程servletURL,课程ID
+会员：1
+课程管理员：2
+系统管理员：3
+请求目录url：{[{catagoryName:"数学",catagoryId:"ID"},{catagoryName:"数学",catagoryId:"ID"},{}]}
+请求目录下的所有课程：请求url://courseCateGory?cmd=ID,返回数据：{data：[{name:"python",courseId:"id",teacher:"刘金卓"},]}
+请求课程详情页：请求url：/courseDetail?cmd=id，返回数据：{name:"python",introduction:"",outline:[{barName:"第一章",barId:""},{}{}],teacher:"",comment:[{name:"高兴",commentContent:"这个课很好",commentTime:"2004-08-13",barName:""},{}]}
+请求小节视频：请求url：/courseBar?cmd=5(barId)，返回数据：{}
+点击搜索：图片地址，课程名称，课程servletURL，课程ID, 请求url:/searchCourse?cmd=搜索内容
+	返回数据： {data:[{name:"python",courseId:"id",teacher:"刘金卓"},]}
+普通会员：
+	我的课程：/userCourse?cmd=name,返回数据：{data:[{name:"python",courseId:"id",teacher:"刘金卓"},]}
+	我的评论：/userComment?cmd=name，返回数据：{data:[{commentContent:"这个课很好",commentTime:"2004-08-13",courseName:"",barName:""},{}]}
+课程管理员：请求url：/courseManagement,返回数据：{[{catagoryName:"数学",catagoryId:"ID"},{catagoryName:"数学",catagoryId:"ID"},{}]}
+		请求目录下内容内容：请求url:/courseManagement？cmd=catagoryId  返回数据：{data:[{name:"python",courseId:"id",teacher:"刘金卓"，introduction:""},{}]}
+		请求详细章节：url:/courseManagement？courseId=courseId 返回数据：{data:[{barName:"",hasPdf:true,barId:""}，{}]}
+		课程增删查改：
+				提交新增表单：/courseUpdate?cmd=save ，post提交数据：{name："",introduction："",teacher:"",catagoryId:""},返回数据：{}
+				提交修改表单：/courseUpdate?cmd=update  post提交数据：{courseId="",name："",introduction："",teacher:""} 返回数据：{}
+				点击删除：/courseUpdate?cmd=delete&courseId=7  
+		
+		zh==章节增删改：
+				提交新增表单：/barUpdate?cmd=save  上传表单数据  {barName: "",afterBarId(新增章节插入该barId之后):""}
+				提交修改表单：/barUpdate?cmd=update  上传表单数据  {barId："",barName: "",afterBarId(新增章节插入该barId之后):""}
+				点击删除：/barUpdate?cmd=delete&barId=7 		
+		
+
+系统管理员：
+	用户管理：/userManagement    返回所有用户 {data:[{name:"",email:"",authority:""}]}(登陆需要加上返回权限)
+		冻结：/userManagement?operation=freeze 上传表单数据：{emailList：["","",""]}
+		删除：/userManagement?operation=delete 上传表单数据：{emailList：["","",""]}
+		修改权：/userManagement?operation=update   上传表单数据：{emailList：["","",""]，authority：""}
+
+	课程分类管理：/courseCateGory  
+		新增：/CateGoryManagement?cmd=save 上传表单：{categoryName:""}
+		删除：/CateGoryManagement?cmd=delete 上传表单：{categoryIdList:["",""]}
+		修改：/CateGoryManagement?cmd=update 上传表单：{categoryId："",name:""}(courseId是修改的是哪门课程，name是管理员修改后的名字)
+
+	评论管理：/commentManagement   返回所有评论：{data:[{name: "",eamil:"",commentContent: ""},{}]}
+		删除评论:/commentManagement?cmd=delete  提交表单数据：{emailList：["","",""]}
+
+	统计报表：/countCourse  返回数据：{data：[{catagoryName:"",categoryNumber: 5},{}]}(每个分类名对应的是该分类的数量)(详细的课程我自己处理)
+	统计课程小节数及每一小节的播放次数 /countCourse?cmd=countTimes  返回数据:{data:[{courseName:"",courseTimes: 5,barList:[{barName:"走进python",times:5},{},{}]},{},{}]}	  

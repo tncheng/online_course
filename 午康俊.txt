@@ -1,0 +1,13 @@
+请求小节视频：请求url：/courseBar?cmd=5(barId)，返回数据：{path:"",barName:"",courseName:"",outline:[{barName:"第一小节",barId:""},{},{}],comment:[{commentId:"",name:"高兴",commentContent:"",commentTime:"2004-08-13",responseContent:[{name:"程泰宁",commentContent:"",commentTime:"2004-08-13"},{},{}],{}，{}],PDF:"C:/SS.pdf" }
+
+发表评论:请求url:/makeComment 发送json格式：{barId:"",name:"",commentContent:"",commentId""}(有commentId是回复，commentId是-1是发表的评论)
+			      响应json:comment:[{commentId:"",name:"高兴",commentContent:"",commentTime:"2004-08-13",responseContent:[{name:"程泰宁",commentContent:"",commentTime:"2004-08-13"},{},{}],{}，{}]
+
+
+
+点击加入课程：请求url:"/addCourse"
+	      请求数据{barId:"",userName:""}
+	      响应数据{state:"true"}(第一次添加)
+		      {state:"false"}(已添加)
+	      
+
